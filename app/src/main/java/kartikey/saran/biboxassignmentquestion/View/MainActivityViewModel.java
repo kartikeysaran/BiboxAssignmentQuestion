@@ -1,4 +1,4 @@
-package kartikey.saran.biboxassignmentquestion.Helper.View;
+package kartikey.saran.biboxassignmentquestion.View;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
