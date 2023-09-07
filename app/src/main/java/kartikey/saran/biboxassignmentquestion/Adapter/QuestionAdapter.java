@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 import kartikey.saran.biboxassignmentquestion.Helper.Utils;
+import kartikey.saran.biboxassignmentquestion.Helper.onOptionAdded;
 import kartikey.saran.biboxassignmentquestion.Model.Question;
 import kartikey.saran.biboxassignmentquestion.R;
 
@@ -31,8 +32,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     private List<Question> questionList;
     private Context context;
     private OptionAdapter optionAdapter;
-    public QuestionAdapter(List<Question> questionList) {
+    private onOptionAdded onOptionAddedListener;
+    public QuestionAdapter(List<Question> questionList, onOptionAdded onOptionAddedListener) {
         this.questionList = questionList;
+        this.onOptionAddedListener = onOptionAddedListener;
     }
 
 
@@ -63,6 +66,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                       optionList.add(holder.editTextOption.getText().toString());
                       optionAdapter = new OptionAdapter(optionList);
                       holder.responseRecyclerView.setAdapter(optionAdapter);
+                      onOptionAddedListener.onNewOptionAdded(questionList.get(position));
                 } else {
                     Toast.makeText(context, "You have reached maximum options for this question", Toast.LENGTH_SHORT).show();
                 }

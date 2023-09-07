@@ -1,5 +1,9 @@
 package kartikey.saran.biboxassignmentquestion.DI;
 
+import android.app.Application;
+
+import java.util.concurrent.Executor;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -7,7 +11,6 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
-import kartikey.saran.biboxassignmentquestion.Application.Application;
 import kartikey.saran.biboxassignmentquestion.DB.Database;
 import kartikey.saran.biboxassignmentquestion.DB.QuestionDAO;
 import kartikey.saran.biboxassignmentquestion.DB.QuestionRepository;
@@ -29,7 +32,7 @@ public class DatabaseModule {
 
     @Provides
     public QuestionRepository provideRepository(QuestionDAO questionDAO) {
-        return new QuestionRepository();
+        return new QuestionRepository(questionDAO);
     }
 
 }

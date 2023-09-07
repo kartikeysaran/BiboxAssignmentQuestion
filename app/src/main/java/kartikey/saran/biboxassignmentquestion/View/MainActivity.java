@@ -17,11 +17,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import kartikey.saran.biboxassignmentquestion.Adapter.QuestionAdapter;
 import kartikey.saran.biboxassignmentquestion.Helper.Utils;
+import kartikey.saran.biboxassignmentquestion.Helper.onOptionAdded;
 import kartikey.saran.biboxassignmentquestion.Model.Question;
 import kartikey.saran.biboxassignmentquestion.R;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private MainActivityViewModel viewModel;
@@ -56,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         questionList = new ArrayList<>();
-        adapter = new QuestionAdapter(questionList);
+        adapter = new QuestionAdapter(questionList, new onOptionAdded() {
+            @Override
+            public void onNewOptionAdded(Question question) {
+                viewModel.updateQuestion(question);
+            }
+        });
         recyclerView.setAdapter(adapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -79,9 +87,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Question> questions) {
                 questionList = questions;
-                adapter = new QuestionAdapter(questions);
+                adapter = new QuestionAdapter(questions, new onOptionAdded() {
+                    @Override
+                    public void onNewOptionAdded(Question question) {
+                        viewModel.updateQuestion(question);
+                    }
+                });
                 recyclerView.setAdapter(adapter);
-                Toast.makeText(MainActivity.this, "Size of ArrayList: "+questionList.size(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -95,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             int toPosition = target.getAdapterPosition();
             Collections.swap(questionList, fromPosition, toPosition);
             recyclerView.getAdapter().notifyItemMoved(fromPosition, toPosition);
+            viewModel.updateQuestionList(questionList);
             return false;
         }
 

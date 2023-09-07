@@ -19,4 +19,7 @@ public interface QuestionDAO {
 
     @Update
     void updateQuestion(Question question);
+
+    @Update
+    void updateQuestionList(List<Question> questions);
 }
