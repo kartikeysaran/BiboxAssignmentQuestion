@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BiboxAssignmentQuestion</string>
+    <string name="add_question">Add question</string>
+    <string name="add_option_here">Add Option here</string>
+    <string name="add_option">Add option</string>
+    <string name="required">Required</string>
+</resources>

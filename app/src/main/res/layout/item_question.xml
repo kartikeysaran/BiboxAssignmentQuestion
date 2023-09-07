@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:text="Question Here"
+            android:id="@+id/item_question_q"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/item_question_lL_option"
+            android:layout_margin="10dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_option_here"
+            android:textSize="12sp"
+            android:id="@+id/item_layout_eT_option"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_option"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:id="@+id/item_question_btn_add_option"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
