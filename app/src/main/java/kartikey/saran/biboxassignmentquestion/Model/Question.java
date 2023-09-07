@@ -20,10 +20,8 @@ public class Question {
         this.id = id;
     }
 
-    @ColumnInfo(name = "question")
     private String question;
 
-    @ColumnInfo(name = "options")
     private List<String> options;
 
     public Question(String question, List<String> options) {

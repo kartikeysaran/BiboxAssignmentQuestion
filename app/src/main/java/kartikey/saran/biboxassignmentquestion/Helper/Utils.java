@@ -14,4 +14,6 @@ public class Utils {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+    public static final String DB_NAME = "questions_db";
 }
